@@ -30,11 +30,11 @@ export default defineComponent({
 </script>
 
 <template>
-  <header>
-    <h1>Notifications <span class="unread-notification-counter">{{ unreadNotificationsCounter }}</span></h1>
-    <span class="mark-all-as-read">Mark all as read</span>
-  </header>
-  <main>
+  <div class="content">
+    <div class="notifications__header">
+      <h1>Notifications <span class="unread-notification-counter">{{ unreadNotificationsCounter }}</span></h1>
+      <span class="mark-all-as-read">Mark all as read</span>
+    </div>
     <notification
       :userName="'Mark Webber'"
       :userAvatar="'../src/assets/images/avatar-mark-webber.webp'"
@@ -91,20 +91,14 @@ export default defineComponent({
       :time="'2 weeks'"
       :unread="false"
     ></notification>
-  </main>
-  <footer class="attribution">
-    Challenge by
-    <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
-      >Frontend Mentor</a
-    >. Coded by <a href="https://github.com/DamianRi/" target="_blank">Damián Rivera</a>.
-  </footer>
+  </div>
 </template>
 
 <style scoped lang="scss">
-header {
+.notifications__header {
   display: flex;
   justify-content: space-between;
-  padding: 2em 1.6rem 0.8rem;
+  padding: 1rem 0;
   background-color: var(--white);
   color: var(--very-dark-blue);
 
@@ -125,14 +119,25 @@ header {
   .mark-all-as-read {
     font-size: 1.4rem;
     cursor: pointer;
+    &:hover {
+      font-weight: 800;
+      color: var(--blue);
+      cursor: pointer;
+    }
   }
 
 }
-main {
+.content {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 1.6rem;
   background-color: var(--white);
+}
+
+@media screen and (min-width: 768px) {
+  .notifications__header {
+    border-radius: 1.6rem 1.6rem 0 0;
+  }
 }
 </style>

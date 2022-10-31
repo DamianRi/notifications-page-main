@@ -147,6 +147,10 @@ export default defineComponent({
       }
       .details__user {
         font-weight: 800;
+        &:hover {
+          color: var(--blue);
+          cursor: pointer;
+        }
       }
       .details__location {
         font-weight: 800;
@@ -155,6 +159,10 @@ export default defineComponent({
         }
         &.join-left {
           color: var(--blue);
+        }
+        &:hover {
+          color: var(--blue);  
+          cursor: pointer;
         }
       }
       .unread-icon {
@@ -167,6 +175,7 @@ export default defineComponent({
       }
     }
     .notification__time {
+      margin: 0.2rem 0 0 0;
       font-size: 1.4rem;
       color: var(--grayish-blue);
     }
@@ -178,6 +187,10 @@ export default defineComponent({
       border-radius: 0.4rem;
       border: 1px solid var(--grayish-blue);
       color: var(--dark-grayish-blue);
+      &:hover {
+        border: 1px solid var(--light-grayish-blue-1);
+        background-color: var(--light-grayish-blue-1);
+      }
     }
   }
   .notification__picture {
