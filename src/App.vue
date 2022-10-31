@@ -1,38 +1,48 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
-import Notification from './components/Notification.vue'
-import { NotificationType } from './types/Notification';
+import { defineComponent } from "vue";
+import Notification from "./components/Notification.vue";
+import { NotificationType } from "./types/Notification";
 export default defineComponent({
   components: {
-    Notification
+    Notification,
   },
   data() {
     return {
       unreadNotifications: [
-        true, true, true, false, false, false, false
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
       ] as Array<Boolean>,
-      notificationType: NotificationType
-    }
+      notificationType: NotificationType,
+    };
   },
-  mounted() {
-  },
+  mounted() {},
   computed: {
-    unreadNotificationsCounter (): number {
-      return this.unreadNotifications.filter((n: boolean) => n).length
-    }
+    unreadNotificationsCounter(): number {
+      return this.unreadNotifications.filter((n: boolean) => n).length;
+    },
   },
   methods: {
-    markAsReadNotifications (): void {
-      this.unreadNotifications.fill(false)
-    }
-  }
-})
+    markAsReadNotifications(): void {
+      this.unreadNotifications.fill(false);
+    },
+  },
+});
 </script>
 
 <template>
   <div class="content">
     <div class="notifications__header">
-      <h1>Notifications <span class="unread-notification-counter">{{ unreadNotificationsCounter }}</span></h1>
+      <h1>
+        Notifications
+        <span class="unread-notification-counter">{{
+          unreadNotificationsCounter
+        }}</span>
+      </h1>
       <span class="mark-all-as-read">Mark all as read</span>
     </div>
     <notification
@@ -59,12 +69,12 @@ export default defineComponent({
       :unread="true"
     ></notification>
     <notification
-    :userName="'Rizky Hasanuddin'"
-    :userAvatar="'../src/assets/images/avatar-rizky-hasanuddin.webp'"
-    :notificationType="notificationType.PRIVATE_MESSAGE"
-    :time="'5 days'"
-    :message="'Hello, thanks for setting up the Chess Club. I\'ve been a member for a few weeks now and I\'m already having lots of fun and improving my game.'"
-    :unread="false"
+      :userName="'Rizky Hasanuddin'"
+      :userAvatar="'../src/assets/images/avatar-rizky-hasanuddin.webp'"
+      :notificationType="notificationType.PRIVATE_MESSAGE"
+      :time="'5 days'"
+      :message="'Hello, thanks for setting up the Chess Club. I\'ve been a member for a few weeks now and I\'m already having lots of fun and improving my game.'"
+      :unread="false"
     ></notification>
     <notification
       :userName="'Kimberly Smith'"
@@ -95,49 +105,48 @@ export default defineComponent({
 </template>
 
 <style scoped lang="scss">
-.notifications__header {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem 0;
-  background-color: var(--white);
-  color: var(--very-dark-blue);
-
-  h1 {
-    font-size: 1.8rem;
-    font-weight: 800;
-
-    .unread-notification-counter {
-      display: inline-block;
-      padding: 0rem 1.1rem;
-      margin: 0 0 0 0.8rem;
-      border-radius: 0.6rem;
-      font-size: 1.4rem;
-      background-color: var(--blue);
-      color: var(--white);
-    }
-  }
-  .mark-all-as-read {
-    font-size: 1.4rem;
-    cursor: pointer;
-    &:hover {
-      font-weight: 800;
-      color: var(--blue);
-      cursor: pointer;
-    }
-  }
-
-}
 .content {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 1.6rem;
   background-color: var(--white);
-}
-
-@media screen and (min-width: 768px) {
   .notifications__header {
-    border-radius: 1.6rem 1.6rem 0 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    background-color: var(--white);
+    color: var(--very-dark-blue);
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+
+      .unread-notification-counter {
+        display: inline-block;
+        padding: 0rem 1.1rem;
+        margin: 0 0 0 0.8rem;
+        border-radius: 0.6rem;
+        font-size: 1.4rem;
+        background-color: var(--blue);
+        color: var(--white);
+      }
+    }
+    .mark-all-as-read {
+      font-size: 1.4rem;
+      cursor: pointer;
+      &:hover {
+        font-weight: 800;
+        color: var(--blue);
+        cursor: pointer;
+      }
+    }
+  }
+}
+@media screen and (min-width: 768px) {
+  .content {
+    border-radius: 1.6rem;
+    box-shadow: 0 0 3.2rem 2.4rem var(--medium-grey);
   }
 }
 </style>

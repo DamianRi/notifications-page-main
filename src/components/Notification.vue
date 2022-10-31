@@ -196,6 +196,11 @@ export default defineComponent({
   .notification__picture {
     width: 4rem;
     height: 4rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0 0 0px 2px var(--light-grayish-blue-1);
+    } 
   }
 }
 </style>
