@@ -27,7 +27,7 @@ export default defineComponent({
     },
   },
   methods: {
-    markAsReadNotifications(): void {
+    markAllAsReadNotifications(): void {
       this.unreadNotifications.fill(false);
     },
   },
@@ -39,11 +39,11 @@ export default defineComponent({
     <div class="notifications__header">
       <h1>
         Notifications
-        <span class="unread-notification-counter">{{
+        <span v-if="unreadNotificationsCounter" class="unread-notification-counter">{{
           unreadNotificationsCounter
         }}</span>
       </h1>
-      <span class="mark-all-as-read">Mark all as read</span>
+      <span class="mark-all-as-read" @click="markAllAsReadNotifications">Mark all as read</span>
     </div>
     <notification
       :userName="'Mark Webber'"
@@ -51,14 +51,14 @@ export default defineComponent({
       :notificationType="notificationType.REACTION"
       :location="'My first tournament today!'"
       :time="'1m'"
-      :unread="true"
+      :unread="unreadNotifications[0]"
     ></notification>
     <notification
       :userName="'Angela Gray'"
       :userAvatar="'../src/assets/images/avatar-angela-gray.webp'"
       :notificationType="notificationType.FOLLOW"
       :time="'5m'"
-      :unread="true"
+      :unread="unreadNotifications[1]"
     ></notification>
     <notification
       :userName="'Jacob Thompson'"
@@ -66,7 +66,7 @@ export default defineComponent({
       :notificationType="notificationType.JOIN_GROUP"
       :location="'Chess Club'"
       :time="'1 day'"
-      :unread="true"
+      :unread="unreadNotifications[2]"
     ></notification>
     <notification
       :userName="'Rizky Hasanuddin'"
@@ -74,16 +74,15 @@ export default defineComponent({
       :notificationType="notificationType.PRIVATE_MESSAGE"
       :time="'5 days'"
       :message="'Hello, thanks for setting up the Chess Club. I\'ve been a member for a few weeks now and I\'m already having lots of fun and improving my game.'"
-      :unread="false"
+      :unread="unreadNotifications[3]"
     ></notification>
     <notification
       :userName="'Kimberly Smith'"
       :userAvatar="'../src/assets/images/avatar-kimberly-smith.webp'"
       :notificationType="notificationType.COMMENT_PICTURE"
-      :location="'Chess Club'"
       :time="'1 week'"
       :picture="'../src/assets/images/image-chess.webp'"
-      :unread="false"
+      :unread="unreadNotifications[4]"
     ></notification>
     <notification
       :userName="'Nathan Peterson'"
@@ -91,7 +90,7 @@ export default defineComponent({
       :notificationType="notificationType.REACTION"
       :location="'5 end-game strategies to increase your win rate'"
       :time="'2 weeks'"
-      :unread="false"
+      :unread="unreadNotifications[5]"
     ></notification>
     <notification
       :userName="'Anna Kim'"
@@ -99,7 +98,7 @@ export default defineComponent({
       :notificationType="notificationType.LEFT_GROUP"
       :location="'Chess Club'"
       :time="'2 weeks'"
-      :unread="false"
+      :unread="unreadNotifications[6]"
     ></notification>
   </div>
 </template>
@@ -145,6 +144,7 @@ export default defineComponent({
 }
 @media screen and (min-width: 768px) {
   .content {
+    padding: 1.6rem 2.4rem 0 2.4rem;
     border-radius: 1.6rem;
     box-shadow: 0 0 3.2rem 2.4rem var(--medium-grey);
   }

@@ -124,7 +124,10 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .notification {
-  display: flex;
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  grid-auto-flow: column;
+  justify-content: start;
   gap: 1.6rem;
   padding: 1.6rem;
   width: 100%;
@@ -161,7 +164,7 @@ export default defineComponent({
           color: var(--blue);
         }
         &:hover {
-          color: var(--blue);  
+          color: var(--blue);
           cursor: pointer;
         }
       }
@@ -200,7 +203,7 @@ export default defineComponent({
     cursor: pointer;
     &:hover {
       box-shadow: 0 0 0px 2px var(--light-grayish-blue-1);
-    } 
+    }
   }
 }
 </style>
