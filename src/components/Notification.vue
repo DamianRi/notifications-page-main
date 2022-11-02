@@ -1,34 +1,15 @@
 <script lang="ts">
 import { computed, defineComponent, PropType } from "vue";
-import { NotificationType, NotificationAction } from "../types/Notification";
+import {
+  NotificationType,
+  NotificationAction,
+  NotificationEntity,
+} from "../types/Notification";
 export default defineComponent({
   props: {
-    userName: {
-      type: String,
+    notificationEntity: {
+      type: Object as PropType<NotificationEntity>,
       required: true,
-    },
-    userAvatar: {
-      type: String,
-      required: true,
-    },
-    notificationType: {
-      type: Number as PropType<NotificationType>,
-      required: true,
-    },
-    location: {
-      type: String,
-    },
-    message: {
-      type: String,
-    },
-    picture: {
-      type: String,
-    },
-    time: {
-      type: String, // this could be in milliseconds to be more dinamically
-    },
-    unread: {
-      type: Boolean,
     },
   },
   data() {
@@ -36,7 +17,7 @@ export default defineComponent({
   },
   setup(props) {
     const getDescriptionFromNotificationType = computed((): string => {
-      switch (props.notificationType) {
+      switch (props.notificationEntity?.notificationType) {
         case NotificationType.COMMENT_PICTURE:
           return NotificationAction.COMMENT_PICTURE;
         case NotificationType.FOLLOW:
@@ -54,20 +35,25 @@ export default defineComponent({
       }
     });
     const isCommetedPictureNotification = computed(() => {
-      return props.notificationType === NotificationType.COMMENT_PICTURE;
+      return (
+        props.notificationEntity?.notificationType ===
+        NotificationType.COMMENT_PICTURE
+      );
     });
     const isReactedNotification = computed(() => {
-      return props.notificationType === NotificationType.REACTION;
+      return (
+        props.notificationEntity?.notificationType === NotificationType.REACTION
+      );
     });
     const isJoinOrLeftGroupNotification = computed(() => {
       return [
         NotificationType.JOIN_GROUP,
         NotificationType.LEFT_GROUP,
-      ].includes(props.notificationType);
+      ].includes(props.notificationEntity!.notificationType);
     });
     const isPrivateMessageNotification = computed(() => {
       return [NotificationType.PRIVATE_MESSAGE].includes(
-        props.notificationType
+        props.notificationEntity!.notificationType
       );
     });
     return {
@@ -82,41 +68,43 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="notification" :class="{ unread }">
+  <div class="notification" :class="{ unread: notificationEntity.unread }">
     <img
       class="notification__avatar"
-      :src="userAvatar"
-      :alt="`User avatar of ${userName}`"
+      :src="'@/' + notificationEntity!.userAvatar"
+      :alt="`User avatar of ${notificationEntity?.userName}`"
     />
     <div class="notification__info">
       <p class="notification__details">
-        <span class="details__user">{{ userName }}</span>
+        <span class="details__user">{{ notificationEntity?.userName }}</span>
         <span class="details__description">{{
           getDescriptionFromNotificationType
         }}</span>
         <span
-          v-if="location && location.length"
+          v-if="
+            notificationEntity?.location && notificationEntity.location.length
+          "
           class="details__location"
           :class="{
             reacted: isReactedNotification,
             'join-left': isJoinOrLeftGroupNotification,
           }"
-          >{{ location }}</span
+          >{{ notificationEntity.location }}</span
         >
-        <span v-if="unread" class="unread-icon"></span>
+        <span v-if="notificationEntity!.unread" class="unread-icon"></span>
       </p>
-      <p class="notification__time">{{ time }} ago</p>
+      <p class="notification__time">{{ notificationEntity?.time }} ago</p>
       <p
-        v-if="isPrivateMessageNotification && message"
+        v-if="isPrivateMessageNotification && notificationEntity?.message"
         class="notification__message"
       >
-        {{ message }}
+        {{ notificationEntity.message }}
       </p>
     </div>
     <img
-      v-if="isCommetedPictureNotification && picture"
+      v-if="isCommetedPictureNotification && notificationEntity?.picture"
       class="notification__picture"
-      :src="picture"
+      :src="'@/' + notificationEntity.picture"
       alt="Picture commented"
     />
   </div>

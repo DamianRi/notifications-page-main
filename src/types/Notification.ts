@@ -1,3 +1,14 @@
+class NotificationEntity {
+  userName: string
+  userAvatar: string
+  notificationType: NotificationType
+  location?: string
+  picture?: string
+  message?: string
+  time: string
+  unread: boolean = true
+}
+
 enum NotificationType {
   COMMENT_PICTURE,
   FOLLOW,
@@ -17,5 +28,6 @@ enum NotificationAction {
 }
 export {
     NotificationType,
-    NotificationAction
+    NotificationAction,
+    NotificationEntity
 }
