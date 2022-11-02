@@ -12,7 +12,7 @@ export default defineComponent({
       notifications: [
         {
           userName: "Mark Webber",
-          userAvatar: "../images/avatar-mark-webber.webp",
+          userAvatar: "images/avatar-mark-webber.webp",
           notificationType: NotificationType.REACTION,
           location: "My first tournament today!",
           time: "1m",
@@ -20,14 +20,14 @@ export default defineComponent({
         },
         {
           userName: "Angela Gray",
-          userAvatar: "../images/avatar-angela-gray.webp",
+          userAvatar: "images/avatar-angela-gray.webp",
           notificationType: NotificationType.FOLLOW,
           time: "5m",
           unread: true,
         },
         {
           userName: "Jacob Thompson",
-          userAvatar: "../images/avatar-jacob-thompson.webp",
+          userAvatar: "images/avatar-jacob-thompson.webp",
           notificationType: NotificationType.JOIN_GROUP,
           location: "Chess Club",
           time: "1 day",
@@ -35,7 +35,7 @@ export default defineComponent({
         },
         {
           userName: "Rizky Hasanuddin",
-          userAvatar: "../images/avatar-rizky-hasanuddin.webp",
+          userAvatar: "images/avatar-rizky-hasanuddin.webp",
           notificationType: NotificationType.PRIVATE_MESSAGE,
           time: "5 days",
           message:
@@ -44,15 +44,15 @@ export default defineComponent({
         },
         {
           userName: "Kimberly Smith",
-          userAvatar: "../images/avatar-kimberly-smith.webp",
+          userAvatar: "images/avatar-kimberly-smith.webp",
           notificationType: NotificationType.COMMENT_PICTURE,
           time: "1 week",
-          picture: "../images/image-chess.webp",
+          picture: "images/image-chess.webp",
           unread: false,
         },
         {
           userName: "Nathan Peterson",
-          userAvatar: "../images/avatar-nathan-peterson.webp",
+          userAvatar: "images/avatar-nathan-peterson.webp",
           notificationType: NotificationType.REACTION,
           location: "5 end-game strategies to increase your win rate",
           time: "2 weeks",
@@ -60,7 +60,7 @@ export default defineComponent({
         },
         {
           userName: "Anna Kim",
-          userAvatar: "../images/avatar-anna-kim.webp",
+          userAvatar: "images/avatar-anna-kim.webp",
           notificationType: NotificationType.LEFT_GROUP,
           location: "Chess Club",
           time: "2 weeks",

@@ -71,7 +71,7 @@ export default defineComponent({
   <div class="notification" :class="{ unread: notificationEntity.unread }">
     <img
       class="notification__avatar"
-      :src="'@/' + notificationEntity!.userAvatar"
+      :src="notificationEntity!.userAvatar"
       :alt="`User avatar of ${notificationEntity?.userName}`"
     />
     <div class="notification__info">
@@ -104,7 +104,7 @@ export default defineComponent({
     <img
       v-if="isCommetedPictureNotification && notificationEntity?.picture"
       class="notification__picture"
-      :src="'@/' + notificationEntity.picture"
+      :src="notificationEntity.picture"
       alt="Picture commented"
     />
   </div>
